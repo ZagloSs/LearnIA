@@ -92,7 +92,8 @@ def main():
     st.text_input("Escribe tu mensaje:", key="user_input", on_change=add_message)
     col1,col2,col3 = st.columns(3)
     with col1:
-        st.button(label="Limpiar", on_click=resetConver)
+        st.button(label="Limpiar Chat", on_click=clearChat,help="Limpia los mensajes del chat, se mostrarán los 2 ultimos")
+        st.button(label="Reiniciar Conversación", on_click=resetConver, help="Reinicia la conversación, mismo efecto que recargar la página")
         
     with col3:
         load = st.file_uploader(label="Carga tu clase anterior (Próximamente)", accept_multiple_files=False, type="txt", disabled=True)
@@ -125,6 +126,9 @@ def resetConver():
     st.session_state["mem"] = st.session_state["mem"][:1]
     st.session_state["messages"] = []
 
+def clearChat():
+    st.session_state["messages"] = st.session_state["messages"][-2:]
+
 def callIa():
     client = Groq(api_key="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")
     completion = client.chat.completions.create(
@@ -141,7 +145,7 @@ def callIa():
         return "Lo siento, la IA no está funcionando correctamente ahora mismo"
     
 
-# def loadClass(file):
+# def loadClass(file):   (Proximamente)
 #     st.session_state["messages"] = []
 #     st.session_state["mem"] = ast.literal_eval(file)
     
