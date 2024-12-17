@@ -79,7 +79,7 @@ def main():
       
     st.markdown("<div class='chat-container'>", unsafe_allow_html=True)
 
-    st.markdown(f"<div class='ai-message'>🤖 Buenas! Soy una IA a tu disposición para ayudarte a aprender cualquier idioma ¿Por cuál empezamos?</div>", unsafe_allow_html=True)
+    st.markdown(f"<div class='ai-message'>🤖 Buenas! Bienvenido a LearnIA una inteligencia artificial a tu disposición para ayudarte a aprender cualquier idioma ¿Por cuál empezamos?</div>", unsafe_allow_html=True)
 
 
     for msg in st.session_state["messages"]:
@@ -96,9 +96,9 @@ def main():
         
     with col3:
         load = st.file_uploader(label="Carga tu clase anterior (Próximamente)", accept_multiple_files=False, type="txt", disabled=True)
-        if load :
-            if st.button(label="Cargar!"):
-                loadClass(load.getvalue())
+        # if load :
+        #     if st.button(label="Cargar!"):
+        #         loadClass(load.getvalue()) (Proximamente)
         st.download_button(label="Descargar clase actual", data=str(st.session_state["mem"]), file_name="class.txt", disabled=True)
 
         
@@ -141,9 +141,9 @@ def callIa():
         return "Lo siento, la IA no está funcionando correctamente ahora mismo"
     
 
-def loadClass(file):
-    st.session_state["messages"] = []
-    st.session_state["mem"] = ast.literal_eval(file)
+# def loadClass(file):
+#     st.session_state["messages"] = []
+#     st.session_state["mem"] = ast.literal_eval(file)
     
 
 if __name__ == "__main__":
